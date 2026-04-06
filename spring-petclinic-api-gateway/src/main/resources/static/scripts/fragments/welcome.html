@@ -1,7 +1,35 @@
- <h1>Welcome to Petclinic</h1>
+ <h1>Bienvenido a VetCare</h1>
+ <h4 class="text-muted">Clínica Veterinaria — by <strong>Iker Dev</strong></h4>
 
  <div class="row">
   <div class="col-md-12">
    <img class="img-responsive" src="images/pets.png" alt="pets logo" />
+  </div>
+ </div>
+
+ <div class="row mt-4" ng-if="!$ctrl.stats.loading">
+  <div class="col-md-4 mb-3">
+   <div class="card text-white bg-primary text-center">
+    <div class="card-body">
+     <h2 class="card-title">{{$ctrl.stats.owners}}</h2>
+     <p class="card-text"><span class="fa fa-users"></span> Propietarios registrados</p>
+    </div>
+   </div>
+  </div>
+  <div class="col-md-4 mb-3">
+   <div class="card text-white bg-success text-center">
+    <div class="card-body">
+     <h2 class="card-title">{{$ctrl.stats.pets}}</h2>
+     <p class="card-text"><span class="fa fa-paw"></span> Mascotas registradas</p>
+    </div>
+   </div>
+  </div>
+  <div class="col-md-4 mb-3">
+   <div class="card text-white bg-info text-center">
+    <div class="card-body">
+     <h2 class="card-title">{{$ctrl.stats.vets}}</h2>
+     <p class="card-text"><span class="fa fa-stethoscope"></span> Veterinarios</p>
+    </div>
+   </div>
   </div>
  </div>

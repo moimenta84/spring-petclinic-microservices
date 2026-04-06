@@ -27,10 +27,31 @@ petClinicApp.config(['$stateProvider', '$urlRouterProvider', '$locationProvider'
         });
 }]);
 
-['welcome', 'nav', 'footer'].forEach(function(c) {
+['nav', 'footer'].forEach(function(c) {
     var mod = 'layout' + c.toUpperCase().substring(0, 1) + c.substring(1);
     angular.module(mod, []);
     angular.module(mod).component(mod, {
         templateUrl: "scripts/fragments/" + c + ".html"
     });
+});
+
+angular.module('layoutWelcome', []);
+angular.module('layoutWelcome').component('layoutWelcome', {
+    templateUrl: "scripts/fragments/welcome.html",
+    controller: ['$http', function($http) {
+        var self = this;
+        self.stats = { owners: 0, pets: 0, vets: 0, loading: true };
+
+        $http.get('api/customer/owners').then(function(resp) {
+            self.stats.owners = resp.data.length;
+            self.stats.pets = resp.data.reduce(function(total, owner) {
+                return total + (owner.pets ? owner.pets.length : 0);
+            }, 0);
+            self.stats.loading = false;
+        });
+
+        $http.get('api/vet/vets').then(function(resp) {
+            self.stats.vets = resp.data.length;
+        });
+    }]
 });

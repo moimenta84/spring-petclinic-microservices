@@ -1,0 +1,165 @@
+# Compose optimizado para VPS con 4 GB RAM / 1 CPU
+# Fase 1: solo servicios core (~2.5 GB)
+# Para levantar: docker compose -f docker-compose.vps.yml up -d
+
+services:
+  config-server:
+    image: springcommunity/spring-petclinic-config-server
+    container_name: config-server
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+    environment:
+      - JAVA_TOOL_OPTIONS=-Xmx200m -Xms64m
+    healthcheck:
+      test: ["CMD", "curl", "-I", "http://config-server:8888"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+    ports:
+      - 8888:8888
+    restart: unless-stopped
+
+  discovery-server:
+    image: springcommunity/spring-petclinic-discovery-server
+    container_name: discovery-server
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+    environment:
+      - JAVA_TOOL_OPTIONS=-Xmx200m -Xms64m
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://discovery-server:8761"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+    depends_on:
+      config-server:
+        condition: service_healthy
+    ports:
+      - 8761:8761
+    restart: unless-stopped
+
+  customers-service:
+    image: springcommunity/spring-petclinic-customers-service
+    container_name: customers-service
+    deploy:
+      resources:
+        limits:
+          memory: 300M
+    environment:
+      - JAVA_TOOL_OPTIONS=-Xmx240m -Xms64m
+    depends_on:
+      config-server:
+        condition: service_healthy
+      discovery-server:
+        condition: service_healthy
+    ports:
+      - 8081:8081
+    restart: unless-stopped
+
+  visits-service:
+    image: springcommunity/spring-petclinic-visits-service
+    container_name: visits-service
+    deploy:
+      resources:
+        limits:
+          memory: 300M
+    environment:
+      - JAVA_TOOL_OPTIONS=-Xmx240m -Xms64m
+    depends_on:
+      config-server:
+        condition: service_healthy
+      discovery-server:
+        condition: service_healthy
+    ports:
+      - 8082:8082
+    restart: unless-stopped
+
+  vets-service:
+    image: springcommunity/spring-petclinic-vets-service
+    container_name: vets-service
+    deploy:
+      resources:
+        limits:
+          memory: 300M
+    environment:
+      - JAVA_TOOL_OPTIONS=-Xmx240m -Xms64m
+    depends_on:
+      config-server:
+        condition: service_healthy
+      discovery-server:
+        condition: service_healthy
+    ports:
+      - 8083:8083
+    restart: unless-stopped
+
+  api-gateway:
+    image: springcommunity/spring-petclinic-api-gateway
+    container_name: api-gateway
+    deploy:
+      resources:
+        limits:
+          memory: 300M
+    environment:
+      - JAVA_TOOL_OPTIONS=-Xmx240m -Xms64m
+    depends_on:
+      config-server:
+        condition: service_healthy
+      discovery-server:
+        condition: service_healthy
+    ports:
+      - 8080:8080
+    restart: unless-stopped
+
+  # --- Servicios opcionales (descomenta cuando tengas margen de RAM) ---
+
+  # admin-server:
+  #   image: springcommunity/spring-petclinic-admin-server
+  #   container_name: admin-server
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         memory: 300M
+  #   environment:
+  #     - JAVA_TOOL_OPTIONS=-Xmx240m -Xms64m
+  #   depends_on:
+  #     config-server:
+  #       condition: service_healthy
+  #     discovery-server:
+  #       condition: service_healthy
+  #   ports:
+  #     - 9090:9090
+  #   restart: unless-stopped
+
+  # tracing-server:
+  #   image: openzipkin/zipkin
+  #   container_name: tracing-server
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         memory: 256M
+  #   ports:
+  #     - 9411:9411
+
+  # grafana-server:
+  #   build: ./docker/grafana
+  #   container_name: grafana-server
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         memory: 192M
+  #   ports:
+  #     - 3030:3000
+
+  # prometheus-server:
+  #   build: ./docker/prometheus
+  #   container_name: prometheus-server
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         memory: 192M
+  #   ports:
+  #     - 9091:9090

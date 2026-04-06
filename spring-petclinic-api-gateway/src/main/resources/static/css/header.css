@@ -7,26 +7,20 @@
   border-right: 0; }
 
 .navbar a.navbar-brand {
-  background: url("../images/spring-logo-dataflow.png") -1px -1px no-repeat;
-  margin: 12px 0 6px;
-  width: 229px;
-  height: 46px;
+  margin: 8px 0;
   display: inline-block;
   text-decoration: none;
-  padding: 0; }
+  padding: 0 10px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #6db33f;
+  letter-spacing: 1px; }
 
 .navbar a.navbar-brand span {
-  display: block;
-  width: 229px;
-  height: 46px;
-  background: url("../images/spring-logo-dataflow.png") -1px -48px no-repeat;
-  opacity: 0;
-  -moz-transition: opacity 0.12s ease-in-out;
-  -webkit-transition: opacity 0.12s ease-in-out;
-  -o-transition: opacity 0.12s ease-in-out; }
+  color: #6db33f; }
 
 .navbar a.navbar-brand:hover span {
-  opacity: 1; }
+  color: #ffffff; }
 
 .navbar li > a, .navbar-text {
   font-family: "montserratregular", sans-serif;

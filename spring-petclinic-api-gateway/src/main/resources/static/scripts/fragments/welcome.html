@@ -1,35 +1,99 @@
- <h1>Bienvenido a VetCare</h1>
- <h4 class="text-muted">Clínica Veterinaria — by <strong>Iker Dev</strong></h4>
+<!-- Hero Section -->
+<div class="vc-hero">
+  <div class="vc-hero-content">
+    <div class="vc-hero-badge"><span class="fa fa-paw"></span> Clínica Veterinaria</div>
+    <div class="vc-hero-author">by Iker Dev</div>
+    <h1 class="vc-hero-title">Vet<span>Care</span></h1>
+    <p class="vc-hero-subtitle">Gestión integral de tu clínica veterinaria: propietarios, mascotas y veterinarios en un solo lugar.</p>
+    <div class="vc-hero-actions">
+      <a ui-sref="owners" class="btn btn-success">
+        <span class="fa fa-search"></span> Propietarios
+      </a>
+      <a ui-sref="ownerNew" class="btn btn-outline-light">
+        <span class="fa fa-plus"></span> Nuevo registro
+      </a>
+      <a ui-sref="vets" class="btn btn-outline-light">
+        <span class="fa fa-stethoscope"></span> Veterinarios
+      </a>
+    </div>
+  </div>
+  <div class="vc-hero-image">
+    <img src="images/pets.png" alt="VetCare mascotas" />
+  </div>
+</div>
 
- <div class="row">
-  <div class="col-md-12">
-   <img class="img-responsive" src="images/pets.png" alt="pets logo" />
+<!-- Stats -->
+<div class="vc-stats" ng-if="!$ctrl.stats.loading">
+  <div class="vc-stats-title">Resumen de la clínica</div>
+  <div class="row g-3">
+    <div class="col-12 col-sm-4">
+      <div class="vc-stat-card blue">
+        <div class="vc-stat-icon"><span class="fa fa-users"></span></div>
+        <div class="vc-stat-body">
+          <div class="vc-stat-number">{{$ctrl.stats.owners}}</div>
+          <div class="vc-stat-label">Propietarios registrados</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-4">
+      <div class="vc-stat-card green">
+        <div class="vc-stat-icon"><span class="fa fa-paw"></span></div>
+        <div class="vc-stat-body">
+          <div class="vc-stat-number">{{$ctrl.stats.pets}}</div>
+          <div class="vc-stat-label">Mascotas registradas</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-sm-4">
+      <div class="vc-stat-card teal">
+        <div class="vc-stat-icon"><span class="fa fa-stethoscope"></span></div>
+        <div class="vc-stat-body">
+          <div class="vc-stat-number">{{$ctrl.stats.vets}}</div>
+          <div class="vc-stat-label">Veterinarios en plantilla</div>
+        </div>
+      </div>
+    </div>
   </div>
- </div>
+</div>
 
- <div class="row mt-4" ng-if="!$ctrl.stats.loading">
-  <div class="col-md-4 mb-3">
-   <div class="card text-white bg-primary text-center">
-    <div class="card-body">
-     <h2 class="card-title">{{$ctrl.stats.owners}}</h2>
-     <p class="card-text"><span class="fa fa-users"></span> Propietarios registrados</p>
+<!-- Stats skeleton mientras carga -->
+<div class="vc-stats-loading row g-3" ng-if="$ctrl.stats.loading">
+  <div class="col-12 col-sm-4"><div class="vc-skeleton"></div></div>
+  <div class="col-12 col-sm-4"><div class="vc-skeleton"></div></div>
+  <div class="col-12 col-sm-4"><div class="vc-skeleton"></div></div>
+</div>
+
+<!-- Accesos rápidos -->
+<div class="vc-quickaccess">
+  <div class="vc-section-title">Accesos rápidos</div>
+  <div class="row g-3">
+    <div class="col-6 col-md-3">
+      <a ui-sref="owners" class="vc-quick-card">
+        <div class="vc-qc-icon"><span class="fa fa-search"></span></div>
+        <div class="vc-qc-label">Buscar propietario</div>
+        <div class="vc-qc-desc">Localiza clientes</div>
+      </a>
     </div>
-   </div>
-  </div>
-  <div class="col-md-4 mb-3">
-   <div class="card text-white bg-success text-center">
-    <div class="card-body">
-     <h2 class="card-title">{{$ctrl.stats.pets}}</h2>
-     <p class="card-text"><span class="fa fa-paw"></span> Mascotas registradas</p>
+    <div class="col-6 col-md-3">
+      <a ui-sref="ownerNew" class="vc-quick-card">
+        <div class="vc-qc-icon"><span class="fa fa-user-plus"></span></div>
+        <div class="vc-qc-label">Nuevo propietario</div>
+        <div class="vc-qc-desc">Registra un cliente</div>
+      </a>
     </div>
-   </div>
-  </div>
-  <div class="col-md-4 mb-3">
-   <div class="card text-white bg-info text-center">
-    <div class="card-body">
-     <h2 class="card-title">{{$ctrl.stats.vets}}</h2>
-     <p class="card-text"><span class="fa fa-stethoscope"></span> Veterinarios</p>
+    <div class="col-6 col-md-3">
+      <a ui-sref="vets" class="vc-quick-card">
+        <div class="vc-qc-icon"><span class="fa fa-th-list"></span></div>
+        <div class="vc-qc-label">Ver veterinarios</div>
+        <div class="vc-qc-desc">Equipo médico</div>
+      </a>
     </div>
-   </div>
+    <div class="col-6 col-md-3">
+      <a href="#" class="vc-quick-card">
+        <div class="vc-qc-icon"><span class="fa fa-calendar"></span></div>
+        <div class="vc-qc-label">Citas</div>
+        <div class="vc-qc-desc">Próximamente</div>
+      </a>
+    </div>
   </div>
- </div>
+</div>

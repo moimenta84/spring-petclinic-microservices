@@ -1,0 +1,344 @@
+/* ===== VetCare Welcome Page ===== */
+
+/* Chatbot oculto temporalmente */
+.chatbox { display: none !important; }
+
+/* Eliminar logo Spring del navbar */
+.navbar a.navbar-brand {
+  background: none !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 0 10px !important;
+  margin: 8px 0 !important;
+  font-size: 22px !important;
+  font-weight: bold !important;
+  color: #6db33f !important;
+  letter-spacing: 1px !important;
+}
+.navbar a.navbar-brand span {
+  background: none !important;
+  display: inline !important;
+  opacity: 1 !important;
+  width: auto !important;
+  height: auto !important;
+  color: #6db33f !important;
+}
+.navbar a.navbar-brand:hover span {
+  color: #fff !important;
+}
+@media (max-width: 768px) {
+  .navbar a.navbar-brand {
+    background: none !important;
+    width: auto !important;
+    height: auto !important;
+  }
+  .navbar a.navbar-brand span {
+    display: inline !important;
+    opacity: 1 !important;
+  }
+}
+
+/* Hero */
+.vc-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 3rem 1.5rem 2rem;
+  background: linear-gradient(135deg, #2a2724 0%, #34302d 60%, #3d4a2e 100%);
+  border-radius: 16px;
+  margin-bottom: 2rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.vc-hero::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 220px;
+  height: 220px;
+  background: rgba(109, 179, 63, 0.08);
+  border-radius: 50%;
+}
+
+.vc-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -40px;
+  left: 30%;
+  width: 140px;
+  height: 140px;
+  background: rgba(109, 179, 63, 0.05);
+  border-radius: 50%;
+}
+
+.vc-hero-content {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.vc-hero-badge {
+  display: inline-block;
+  background: rgba(109, 179, 63, 0.2);
+  color: #6db33f;
+  border: 1px solid rgba(109, 179, 63, 0.4);
+  border-radius: 20px;
+  padding: 4px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 1rem;
+}
+
+.vc-hero-title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 0.5rem;
+  line-height: 1.1;
+}
+
+.vc-hero-title span {
+  color: #6db33f;
+}
+
+.vc-hero-subtitle {
+  font-size: 1.05rem;
+  color: #aaa9a7;
+  margin: 0 0 1.75rem;
+  max-width: 420px;
+  line-height: 1.6;
+}
+
+.vc-hero-author {
+  font-size: 0.8rem;
+  color: #6db33f;
+  opacity: 0.7;
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.5px;
+}
+
+.vc-hero-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.vc-hero-actions .btn {
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 0.6rem 1.4rem;
+  font-size: 0.9rem;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.vc-hero-actions .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+.vc-hero-image {
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.vc-hero-image img {
+  max-width: 220px;
+  width: 100%;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.5));
+  border-radius: 12px;
+}
+
+/* Stats */
+.vc-stats {
+  margin-bottom: 2rem;
+}
+
+.vc-stats-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 1rem;
+}
+
+.vc-stat-card {
+  border: none;
+  border-radius: 14px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: transform 0.15s, box-shadow 0.15s;
+  cursor: default;
+}
+
+.vc-stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.vc-stat-card.blue  { background: linear-gradient(135deg, #1a6fc4, #2a87e0); }
+.vc-stat-card.green { background: linear-gradient(135deg, #4a9c20, #6db33f); }
+.vc-stat-card.teal  { background: linear-gradient(135deg, #0e7a6e, #17a59a); }
+
+.vc-stat-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.vc-stat-body {
+  min-width: 0;
+}
+
+.vc-stat-number {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.vc-stat-label {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.85);
+  font-weight: 500;
+}
+
+/* Loading skeleton */
+.vc-stats-loading {
+  margin-bottom: 2rem;
+}
+
+.vc-skeleton {
+  background: linear-gradient(90deg, #e8e8e8 25%, #f4f4f4 50%, #e8e8e8 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+  border-radius: 14px;
+  height: 90px;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Quick access */
+.vc-quickaccess {
+  margin-bottom: 2rem;
+}
+
+.vc-section-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 1rem;
+}
+
+.vc-quick-card {
+  border: 1.5px solid #e8e8e8;
+  border-radius: 14px;
+  padding: 1.25rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  transition: all 0.15s;
+  background: #fff;
+  color: #333;
+}
+
+.vc-quick-card:hover {
+  border-color: #6db33f;
+  background: #f6fbf0;
+  color: #34302d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(109,179,63,0.15);
+  text-decoration: none;
+}
+
+.vc-quick-card .vc-qc-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #f0f7e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: #6db33f;
+  margin: 0 auto 0.75rem;
+  transition: background 0.15s;
+}
+
+.vc-quick-card:hover .vc-qc-icon {
+  background: #6db33f;
+  color: #fff;
+}
+
+.vc-quick-card .vc-qc-label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.vc-quick-card .vc-qc-desc {
+  font-size: 0.75rem;
+  color: #999;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .vc-hero {
+    flex-direction: column;
+    padding: 2rem 1.25rem;
+    text-align: center;
+  }
+
+  .vc-hero-subtitle {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .vc-hero-actions {
+    justify-content: center;
+  }
+
+  .vc-hero-image {
+    order: -1;
+  }
+
+  .vc-hero-image img {
+    max-width: 140px;
+  }
+
+  .vc-hero-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .vc-hero-title {
+    font-size: 1.7rem;
+  }
+  .vc-hero-actions .btn {
+    width: 100%;
+    text-align: center;
+  }
+}

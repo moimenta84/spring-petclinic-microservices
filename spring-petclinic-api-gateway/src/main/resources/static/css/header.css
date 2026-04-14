@@ -7,6 +7,7 @@
   border-right: 0; }
 
 .navbar a.navbar-brand {
+  background: none !important;
   margin: 8px 0;
   display: inline-block;
   text-decoration: none;
@@ -14,9 +15,16 @@
   font-size: 22px;
   font-weight: bold;
   color: #6db33f;
-  letter-spacing: 1px; }
+  letter-spacing: 1px;
+  width: auto !important;
+  height: auto !important; }
 
 .navbar a.navbar-brand span {
+  display: inline !important;
+  background: none !important;
+  opacity: 1 !important;
+  width: auto !important;
+  height: auto !important;
   color: #6db33f; }
 
 .navbar a.navbar-brand:hover span {

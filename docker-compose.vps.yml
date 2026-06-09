@@ -101,7 +101,7 @@ services:
     restart: unless-stopped
 
   api-gateway:
-    image: moimenta/spring-petclinic-api-gateway:latest
+    image: moimeta/spring-petclinic-api-gateway:latest
     container_name: api-gateway
     deploy:
       resources:

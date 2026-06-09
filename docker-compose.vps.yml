@@ -12,6 +12,10 @@ services:
           memory: 256M
     environment:
       - JAVA_TOOL_OPTIONS=-Xmx200m -Xms64m
+      # Lee la config desde TU fork (incluye el fix de eureka prefer-ip-address)
+      # en vez del repo de upstream. Backend git: el VPS no necesita ficheros locales.
+      - SPRING_CLOUD_CONFIG_SERVER_GIT_URI=https://github.com/moimenta84/spring-petclinic-microservices-config
+      - SPRING_CLOUD_CONFIG_SERVER_GIT_DEFAULT_LABEL=fix/eureka-prefer-ip-address
     healthcheck:
       test: ["CMD", "curl", "-I", "http://config-server:8888"]
       interval: 10s
@@ -97,14 +101,14 @@ services:
     restart: unless-stopped
 
   api-gateway:
-    image: springcommunity/spring-petclinic-api-gateway
+    image: moimenta/spring-petclinic-api-gateway:latest
     container_name: api-gateway
     deploy:
       resources:
         limits:
           memory: 300M
     environment:
-      - JAVA_TOOL_OPTIONS=-Xmx240m -Xms64m
+      - JAVA_TOOL_OPTIONS=-Xmx200m -Xms64m -XX:MaxMetaspaceSize=100m -XX:ReservedCodeCacheSize=64m
     depends_on:
       config-server:
         condition: service_healthy

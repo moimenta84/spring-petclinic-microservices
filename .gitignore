@@ -21,3 +21,10 @@ target/
 generated/
 
 **/.DS_Store
+
+# Claude Code
+CONTRIBUTING_TASKS.md
+BUSINESS_IDEA.md
+
+# Config: repo git propio (fork), no debe entrar como gitlink en el repo principal
+spring-petclinic-microservices-config/

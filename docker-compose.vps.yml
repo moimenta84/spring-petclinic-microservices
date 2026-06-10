@@ -5,7 +5,7 @@
 services:
   config-server:
     image: springcommunity/spring-petclinic-config-server
-    container_name: config-server
+    container_name: vc-config-server
     deploy:
       resources:
         limits:
@@ -27,7 +27,7 @@ services:
 
   discovery-server:
     image: springcommunity/spring-petclinic-discovery-server
-    container_name: discovery-server
+    container_name: vc-discovery-server
     deploy:
       resources:
         limits:
@@ -43,12 +43,12 @@ services:
       config-server:
         condition: service_healthy
     ports:
-      - 8761:8761
+      - 8762:8761
     restart: unless-stopped
 
   customers-service:
     image: springcommunity/spring-petclinic-customers-service
-    container_name: customers-service
+    container_name: vc-customers
     deploy:
       resources:
         limits:
@@ -61,12 +61,12 @@ services:
       discovery-server:
         condition: service_healthy
     ports:
-      - 8081:8081
+      - 8091:8081
     restart: unless-stopped
 
   visits-service:
     image: springcommunity/spring-petclinic-visits-service
-    container_name: visits-service
+    container_name: vc-visits
     deploy:
       resources:
         limits:
@@ -79,12 +79,12 @@ services:
       discovery-server:
         condition: service_healthy
     ports:
-      - 8082:8082
+      - 8092:8082
     restart: unless-stopped
 
   vets-service:
     image: springcommunity/spring-petclinic-vets-service
-    container_name: vets-service
+    container_name: vc-vets
     deploy:
       resources:
         limits:
@@ -97,12 +97,12 @@ services:
       discovery-server:
         condition: service_healthy
     ports:
-      - 8083:8083
+      - 8093:8083
     restart: unless-stopped
 
   api-gateway:
     image: moimeta/spring-petclinic-api-gateway:latest
-    container_name: api-gateway
+    container_name: vc-api-gateway
     deploy:
       resources:
         limits:
@@ -115,7 +115,7 @@ services:
       discovery-server:
         condition: service_healthy
     ports:
-      - 8080:8080
+      - 8090:8080
     restart: unless-stopped
 
   # --- Servicios opcionales (descomenta cuando tengas margen de RAM) ---
